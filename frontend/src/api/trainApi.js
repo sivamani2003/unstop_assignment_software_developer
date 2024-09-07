@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5008/api/trains'; // Adjust this URL as needed
+const API_URL = 'https://unstop-assignment-software-developer.onrender.com/api/trains'; // Adjust this URL as needed
 
 export const addTrain = async (train) => {
   try {
@@ -8,6 +8,7 @@ export const addTrain = async (train) => {
       body: JSON.stringify(train),
     });
     return response.json();
+    
   } catch (error) {
     console.error('Error adding train:', error);
   }

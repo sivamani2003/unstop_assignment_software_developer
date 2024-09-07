@@ -1,4 +1,3 @@
-// src/components/TrainForm.js
 import React, { useState } from 'react';
 import { addTrain } from '../api/trainApi';
 
@@ -8,9 +7,15 @@ const TrainForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await addTrain({ trainName, trainNumber });
-    setTrainName('');
-    setTrainNumber('');
+    
+    // Add train and reload the page on success
+    const response = await addTrain({ trainName, trainNumber });
+    
+    if (response && response.success) {
+      window.location.reload();  // Reload page if train is successfully added
+    } else {
+      console.error('Failed to add train:', response);
+    }
   };
 
   return (

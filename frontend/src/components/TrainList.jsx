@@ -11,6 +11,7 @@ const TrainList = () => {
       setTrains(data);
     };
     fetchTrains();
+    
   }, []);
 
   const handleDelete = async (trainNumber) => {

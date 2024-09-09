@@ -128,6 +128,27 @@ const getNumberOfTrains = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+// Update Train Name
+const updateTrainName = async (req, res) => {
+  const { trainNumber } = req.params;
+  const { newTrainName } = req.body;
+
+  if (!newTrainName) {
+    return res.status(400).json({ message: "New train name is required" });
+  }
+
+  const train = await Train.findOne({ trainNumber });
+
+  if (!train) {
+    return res.status(404).json({ message: "Train not found" });
+  }
+
+  train.trainName = newTrainName;
+
+  await train.save();
+
+  res.json({ message: "Train name updated successfully", train });
+};
 
 module.exports = {
   addTrain,
@@ -135,4 +156,5 @@ module.exports = {
   bookSeats,
   getAllTrains,
   getNumberOfTrains,
+  updateTrainName
 };

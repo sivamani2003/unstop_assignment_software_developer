@@ -8,7 +8,9 @@ connectDB();
 
 const app = express();
 app.use(express.json());
-app.use(cors())
+app.use(cors({
+    origin: 'https://sivamani-unstop-assignment-software-developer.vercel.app' // Allow only this origin
+  }));
 // Train routes
 app.use("/api/trains", trainRoutes);
 

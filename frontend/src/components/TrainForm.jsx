@@ -7,13 +7,15 @@ const TrainForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Add train and reload the page on success
+
+    // Add train and reload the page
     const response = await addTrain({ trainName, trainNumber });
     
-    if (response && response.success) {
-      window.location.reload();  // Reload page if train is successfully added
+    if (response && response._id) {
+      // Train added successfully, reload the page
+      window.location.reload();  
     } else {
+      // Handle any unexpected errors
       console.error('Failed to add train:', response);
     }
   };
